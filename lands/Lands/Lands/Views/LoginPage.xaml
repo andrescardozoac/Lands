@@ -70,7 +70,7 @@
                 <Label
                     FontSize="Medium"
                     HorizontalOptions="StartAndExpand"
-                    Text="Remember in this device"
+                    Text="Remember on this device"
                     VerticalOptions="Center" 
                 ></Label>
                 <Switch
@@ -78,8 +78,17 @@
                     ></Switch>
                 
                 <ActivityIndicator></ActivityIndicator>
-            </StackLayout>            
-                                      
+            </StackLayout>
+
+                <Label
+                    HorizontalOptions="Center"
+                    Text="Forgot your Password?"
+                    TextColor="Blue">
+                    
+                    
+                </Label>
+            
+            
             <StackLayout
                 Margin="30,10"
                 >
