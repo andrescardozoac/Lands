@@ -17,7 +17,7 @@
 
             <Grid
                 Margin="10,0"
-              
+                VerticalOptions="CenterAndExpand"
                 >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -60,28 +60,33 @@
                 
             </Grid>
 
-            <StackLayout
+                <ActivityIndicator
+                    VerticalOptions="CenterAndExpand"
+                    ></ActivityIndicator>
+            
+                <StackLayout
                 Margin="10,0"
                 Orientation="Horizontal"
+                VerticalOptions="CenterAndExpand"
                 >
 
                 <Label
                     FontSize="Medium"
                     HorizontalOptions="StartAndExpand"
                     Text="Remember on this device"
-                    VerticalOptions="Center" 
+                    VerticalOptions="CenterAndExpand" 
                 ></Label>
                 <Switch
                     HorizontalOptions="StartAndExpand"
                     ></Switch>
-                
-                <ActivityIndicator></ActivityIndicator>
+              
             </StackLayout>
 
                 <Label
                     HorizontalOptions="Center"
                     Text="Forgot your Password?"
-                    TextColor="Blue">
+                    TextColor="Blue"
+                    VerticalOptions="CenterAndExpand">
                     
                     
                 </Label>
@@ -90,6 +95,7 @@
             <StackLayout
                 Margin="30,10"
                 Orientation="Horizontal"
+                VerticalOptions="CenterAndExpand"
                 >
                 <Button
                 BackgroundColor="Navy"
@@ -114,8 +120,10 @@
 
             <StackLayout 
                 HorizontalOptions="Center"
-                Margin="10,20"
-                Orientation="Horizontal">
+               
+                Orientation="Horizontal"
+                VerticalOptions="EndAndExpand">
+                
                 <Image
                     Source ="logoface.png"
                     WidthRequest="60"
