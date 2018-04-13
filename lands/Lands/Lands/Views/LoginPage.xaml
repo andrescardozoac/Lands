@@ -84,7 +84,9 @@
                     VerticalOptions="CenterAndExpand" 
                 ></Label>
                 <Switch
+                    IsToggled="{Binding IsRemembered , Mode=TwoWay}"
                     HorizontalOptions="StartAndExpand"
+                    
                     ></Switch>
               
             </StackLayout>
@@ -105,6 +107,7 @@
                 VerticalOptions="CenterAndExpand"
                 >
                 <Button
+                    Command="{Binding LoginCommand}"
                 BackgroundColor="Navy"
                 BorderRadius="23"
                 HeightRequest="46"
