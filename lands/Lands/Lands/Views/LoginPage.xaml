@@ -2,10 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lands.Views.LoginPage"
-             Title="Landas"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Lands"
             >
     <ContentPage.Content>
-    <ScrollView>
+    <ScrollView
+        BindingContext="{Binding Login}"
+        >
+        
         <StackLayout
             Padding="5"
             >
@@ -38,6 +42,7 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     Keyboard="Email"
+                    Text="{Binding Email, Mode=TwoWay}"
                     Placeholder="Enter your Email"
                     VerticalOptions="Center"
                     
@@ -54,6 +59,7 @@
                     Grid.Column="1"
                     IsPassword="True"
                     Placeholder="Enter your Password"
+                    Text="{Binding Password, Mode=TwoWay}"
                     VerticalOptions="Center"
                 ></Entry>
 
@@ -61,6 +67,7 @@
             </Grid>
 
                 <ActivityIndicator
+                    IsRunning="{Binding IsRunning ,Mode=TwoWay}"
                     VerticalOptions="CenterAndExpand"
                     ></ActivityIndicator>
             
@@ -120,7 +127,6 @@
 
             <StackLayout 
                 HorizontalOptions="Center"
-               
                 Orientation="Horizontal"
                 VerticalOptions="EndAndExpand">
                 

@@ -12,10 +12,10 @@ namespace Lands.InfraStructure
         #region Properties
 
         public MainViewModel Main
-        {
 
-            get; set;
-        }
+        { get;
+
+          set; }
 
 
         #endregion
