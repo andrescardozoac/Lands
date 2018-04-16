@@ -6,30 +6,30 @@
              Title="Lands"
             >
     <ContentPage.Content>
-    <ScrollView
+        <ScrollView
         BindingContext="{Binding Login}"
         >
-        
-        <StackLayout
+
+            <StackLayout
             Padding="5"
             >
-            <Image
+                <Image
                 Source="lands_logos.png"
                 WidthRequest="150"
                 >
-            </Image>
+                </Image>
 
-            <Grid
+                <Grid
                 Margin="10,0"
                 VerticalOptions="CenterAndExpand"
                 >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                    
-                </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
 
-                <Label 
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
                     FontSize="Medium"
                     Grid.Row="0"
                     Grid.Column="0"
@@ -37,7 +37,7 @@
                     VerticalOptions="Center"
                   
                    />
-                <Entry
+                    <Entry
                     
                     Grid.Row="0"
                     Grid.Column="1"
@@ -47,14 +47,14 @@
                     VerticalOptions="Center"
                     
                 ></Entry>
-                <Label
+                    <Label
                     FontSize="Medium"
                     Grid.Row="1"
                     Grid.Column="0"
                     Text="Password"
                     VerticalOptions="Center"
                    />
-                <Entry
+                    <Entry
                     Grid.Row="1"
                     Grid.Column="1"
                     IsPassword="True"
@@ -63,101 +63,103 @@
                     VerticalOptions="Center"
                 ></Entry>
 
-                
-            </Grid>
+
+                </Grid>
 
                 <ActivityIndicator
                     IsRunning="{Binding IsRunning ,Mode=TwoWay}"
                     VerticalOptions="CenterAndExpand"
                     ></ActivityIndicator>
-            
+
                 <StackLayout
                 Margin="10,0"
                 Orientation="Horizontal"
                 VerticalOptions="CenterAndExpand"
                 >
 
-                <Label
+                    <Label
                     FontSize="Medium"
                     HorizontalOptions="StartAndExpand"
                     Text="Remember on this device"
                     VerticalOptions="CenterAndExpand" 
                 ></Label>
-                <Switch
+                    <Switch
                     IsToggled="{Binding IsRemembered , Mode=TwoWay}"
                     HorizontalOptions="StartAndExpand"
                     
                     ></Switch>
-              
-            </StackLayout>
+
+                </StackLayout>
 
                 <Label
                     HorizontalOptions="Center"
                     Text="Forgot your Password?"
                     TextColor="Blue"
                     VerticalOptions="CenterAndExpand">
-                    
-                    
+
+
                 </Label>
-            
-            
-            <StackLayout
+
+
+                <StackLayout
                 Margin="30,10"
                 Orientation="Horizontal"
                 VerticalOptions="CenterAndExpand"
                 >
-                <Button
+                    <Button
                     Command="{Binding LoginCommand}"
                 BackgroundColor="Navy"
                 BorderRadius="23"
                 HeightRequest="46"
                 HorizontalOptions="FillAndExpand"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                 Text="Login"
                 TextColor="White"
                 >
-                </Button>
-                <Button
+                    </Button>
+                    <Button
                 BackgroundColor="CornflowerBlue"
                 BorderRadius="23"
                 HeightRequest="46"
                 HorizontalOptions="FillAndExpand"
-                    Text="Register"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                Text="Register"
                 TextColor="White"
                 >
-                </Button>
+                    </Button>
 
-            </StackLayout>
+                </StackLayout>
 
-            <StackLayout 
+                <StackLayout 
                 HorizontalOptions="Center"
                 Orientation="Horizontal"
                 VerticalOptions="EndAndExpand">
-                
-                <Image
+
+                    <Image
                     Source ="logoface.png"
                     WidthRequest="60"
                     >
-                </Image>
-                <Image
+                    </Image>
+                    <Image
                     Source ="twiter_.png"
                     WidthRequest="60"
                     >
 
-                </Image>
+                    </Image>
 
 
-                <Image
+                    <Image
                     Source ="instagram.png"
                     WidthRequest="60"
                     >
 
-                </Image>
+                    </Image>
+
+
+                </StackLayout>
 
 
             </StackLayout>
-            
-           
-        </StackLayout>
-    </ScrollView>
-</ContentPage.Content>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
