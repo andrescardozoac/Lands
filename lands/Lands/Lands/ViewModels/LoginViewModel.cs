@@ -2,6 +2,7 @@
 namespace Lands.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using Lands.Views;
 
     //Recomendacion Using por dentro del namespaces 
 
@@ -17,7 +18,7 @@ namespace Lands.ViewModels
 
 
         #region Atributes
-
+        private string email;
         private string password;
         private bool isrunning;
         private bool isEnabled;
@@ -27,7 +28,13 @@ namespace Lands.ViewModels
 
         #region Properties
 
-        public string Email { get; set; }
+        public string Email
+        {
+            //Para refrescar las propiedaeds en tiempo de ejecucion mediante la clase BaseViewModel
+            get { return this.email; }
+            set { SetValue(ref this.email, value); }
+
+        }
 
         public string Password
         {
@@ -62,6 +69,11 @@ namespace Lands.ViewModels
     {
         this.IsRemembered = true;
         this.isEnabled = true;
+
+            this.email = "luisandrescardoz@gmail.com";
+            this.password = "12345";
+
+            //http://restcountries.eu/rest/v2/all
     }
     #endregion
 
@@ -120,13 +132,11 @@ namespace Lands.ViewModels
         this.IsRunning = false;
         this.IsEnabled = true;
 
-        await Application.Current.MainPage.DisplayAlert(
-                "OK",
-                "Fuck yeahh",
-                "Accept");
-        return;
+            this.email = string.Empty;
+            this.password = string.Empty;
 
-
+            MainViewModel.GetInstance().Lands = new LandsViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage())
     }
 
 

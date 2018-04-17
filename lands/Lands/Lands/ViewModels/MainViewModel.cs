@@ -10,7 +10,17 @@ namespace Lands.ViewModels
         #region ViewModels
 
         public LoginViewModel Login
-        { get; set; }
+        {
+            get;
+            set;
+        }
+
+        public LandsViewModel Lands
+        {
+            get;
+            set;
+
+        }
 
         #endregion
 
@@ -18,8 +28,26 @@ namespace Lands.ViewModels
 
         public MainViewModel()
         {
+            instance = this;
             this.Login = new LoginViewModel();
         }
+        #endregion
+
+        #region Singleton 
+        //El Patron Singleton Nos permite poder hacer un llamado de la mainViewModel desde cualquier clase sin necesidad de instanciar otra main view model
+        private static MainViewModel instance;
+
+        public static MainViewModel GetInstance()
+        {
+            if(instance == null)
+            {
+
+                return new MainViewModel();
+
+            }
+            return instance;
+        }
+
         #endregion
 
     }
