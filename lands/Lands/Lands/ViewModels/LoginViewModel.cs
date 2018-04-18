@@ -70,7 +70,7 @@ namespace Lands.ViewModels
         this.IsRemembered = true;
         this.isEnabled = true;
 
-            this.email = "luisandrescardoz@gmail.com";
+            this.email = "luisandrescardozo@gmail.com";
             this.password = "12345";
 
             //http://restcountries.eu/rest/v2/all
@@ -132,11 +132,11 @@ namespace Lands.ViewModels
         this.IsRunning = false;
         this.IsEnabled = true;
 
-            this.email = string.Empty;
-            this.password = string.Empty;
+            this.Email = string.Empty;
+            this.Password = string.Empty;
 
             MainViewModel.GetInstance().Lands = new LandsViewModel();
-            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage())
+            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
     }
 
 
