@@ -37,16 +37,16 @@ namespace Lands.Models
         public int Population { get; set; }
 
         [JsonProperty(PropertyName = "latlng")] //Es para colocarle un alias en C# a la propiedad que viene por JSON
-        public List<int> Latlng { get; set; }
+        public List<double> Latlng { get; set; }
 
         [JsonProperty(PropertyName = "demonym")] //Es para colocarle un alias en C# a la propiedad que viene por JSON
         public string Demonym { get; set; }
 
         [JsonProperty(PropertyName = "area")] //Es para colocarle un alias en C# a la propiedad que viene por JSON
-        public int Area { get; set; }
+        public double? Area { get; set; }
 
         [JsonProperty(PropertyName = "gini")] //Es para colocarle un alias en C# a la propiedad que viene por JSON
-        public double Gini { get; set; }
+        public double? Gini { get; set; }
 
         [JsonProperty(PropertyName = "timezones")] //Es para colocarle un alias en C# a la propiedad que viene por JSON
         public List<string> Timezones { get; set; }
