@@ -45,8 +45,9 @@ namespace Lands.ViewModels
         #region Contructor
         public LandsViewModel()
         {
-            this.LoadLands();
             this.apiservice = new ApiService();
+            this.LoadLands();
+           
         }
 
         #endregion
@@ -54,24 +55,25 @@ namespace Lands.ViewModels
         #region Methods
         private async void LoadLands()
         {
-            var response = await this.apiservice.GetList<Land>(
+            var response = await this.apiservice.GetList<Land> (
                 "http://restcountries.eu",
                 "/rest",
                 "/v2/all");
 
-            if(!response.IsSuccess )
+            if(!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
                     response.Message,
                     "Accept"
                     );
+                return;
 
-                var list = (List<Land>)response.Result;
-                this.Lands = new ObservableCollection<Land>(list);
 
             }
 
+            var list = (List<Land>)response.Result;
+            this.Lands = new ObservableCollection<Land>(list);
         }
 
         #endregion
