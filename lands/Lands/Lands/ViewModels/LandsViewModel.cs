@@ -15,7 +15,7 @@ namespace Lands.ViewModels
 
         #region Services
 
-        private ApiService apiservice;    
+        private ApiService apiService;    
 
         #endregion
 
@@ -45,7 +45,7 @@ namespace Lands.ViewModels
         #region Contructor
         public LandsViewModel()
         {
-            this.apiservice = new ApiService();
+            this.apiService = new ApiService();
             this.LoadLands();
            
         }
@@ -55,7 +55,24 @@ namespace Lands.ViewModels
         #region Methods
         private async void LoadLands()
         {
-            var response = await this.apiservice.GetList<Land> (
+            var connection = await this.apiService.CheckConnection();
+
+            if(!connection.IsSuccess)
+            {
+
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    connection.Message,
+                    "Accept"
+                    );
+
+                await Application.Current.MainPage.Navigation.PopAsync(); //Desapila, se devuelve un atras en codigo
+
+                return;
+
+            }
+
+            var response = await this.apiService.GetList<Land> (
                 "http://restcountries.eu",
                 "/rest",
                 "/v2/all");

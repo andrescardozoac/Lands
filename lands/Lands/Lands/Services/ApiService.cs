@@ -10,12 +10,12 @@ namespace Lands.Services
     using System.Threading.Tasks;
     using Models;
     using Newtonsoft.Json;
-   // using Plugin.Connectivity;
+    using Plugin.Connectivity;
    // using Domain;
 
     public class ApiService
     {
-      /*  public async Task<Response> CheckConnection()
+        public async Task<Response> CheckConnection()
         {
             if (!CrossConnectivity.Current.IsConnected)
             {
@@ -26,7 +26,9 @@ namespace Lands.Services
                 };
             }
 
-            var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
+            //  var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
+            var isReachable = await CrossConnectivity.Current.IsReachable("google.com");
+         
             if (!isReachable)
             {
                 return new Response
@@ -41,7 +43,7 @@ namespace Lands.Services
                 IsSuccess = true,
                 Message = "Ok",
             };
-        }*/
+        }
 
         public async Task<TokenResponse> GetToken(
             string urlBase,
