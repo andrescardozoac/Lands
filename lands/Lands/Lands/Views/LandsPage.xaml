@@ -9,6 +9,13 @@
         <StackLayout
             BindingContext="{Binding Lands}"
             Padding ="5">
+            <SearchBar
+                Placeholder="Search..."
+                Text="{Binding Filter, Mode=TwoWay}"
+                SearchCommand="{Binding SearchCommand}"
+                >
+                
+            </SearchBar>
             <ListView 
                 BackgroundColor="Silver"
                 HasUnevenRows="true" 
@@ -31,12 +38,7 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <ffimageloading:CachedImage 
-                                        Grid.Column="0"
-                                        HeightRequest="30"
-                                        Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}"
-                                        WidthRequest="60">
-                                    </ffimageloading:CachedImage>
+                                    
                                     <StackLayout 
                                         Grid.Column="1"
                                         VerticalOptions="Center">
