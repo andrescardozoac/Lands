@@ -26,7 +26,7 @@ namespace Lands.Services
                 };
             }
 
-            //  var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
+           //  var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
             var isReachable = await CrossConnectivity.Current.IsReachable("google.com");
          
             if (!isReachable)
