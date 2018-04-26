@@ -139,6 +139,16 @@
                     Source ="logoface.png"
                     WidthRequest="60"
                     >
+                        <Image.GestureRecognizers>
+
+                            <TapGestureRecognizer Command="{Binding LoginFacebookComand}">
+                                
+                            </TapGestureRecognizer>
+                            
+                        </Image.GestureRecognizers>
+                        
+                        
+                        
                     </Image>
                     <Image
                     Source ="twiter_.png"
