@@ -28,7 +28,7 @@ namespace Lands.ViewModels
         private ObservableCollection<LandItemViewModel> lands; //Creamos una lista tipo ObservableCollection para pintar en un ListView de la clase Land
         private bool isRefreshing;
         private string filter;
-        private List<Land> landList;
+     
         #endregion
 
         #region Properties
@@ -122,7 +122,7 @@ namespace Lands.ViewModels
 
             }
 
-            this.landList = (List<Land>)response.Result;
+            MainViewModel.GetInstance().LandList = (List<Land>)response.Result;
             this.Lands = new ObservableCollection<LandItemViewModel>(
             this.ToLoadItemViewModel());
             this.IsRefreshing = false;
@@ -131,7 +131,7 @@ namespace Lands.ViewModels
         #region Methods
         private IEnumerable<LandItemViewModel> ToLoadItemViewModel()
         {
-            return this.landList.Select(l => new LandItemViewModel
+            return MainViewModel.GetInstance().LandList.Select(l => new LandItemViewModel
             {
                 Alpha2Code = l.Alpha2Code,
                 Alpha3Code = l.Alpha3Code,
