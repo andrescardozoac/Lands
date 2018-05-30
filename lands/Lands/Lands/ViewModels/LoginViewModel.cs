@@ -12,10 +12,17 @@ namespace Lands.ViewModels
     using System.Text;
     using System.Windows.Input;
     using Xamarin.Forms;
+    using Services;
 
     public class LoginViewModel : BaseViewModel
     {
+        #region Services
 
+        private ApiService apiService;
+
+
+
+        #endregion
 
         #region Atributes
         private string email;
@@ -45,99 +52,134 @@ namespace Lands.ViewModels
         }
 
 
-    public bool IsRunning
-    {
-        //Para refrescar las propiedaeds en tiempo de ejecucion mediante la clase BaseViewModel
-        get { return this.isrunning; }
-        set { SetValue(ref this.isrunning, value); }
-    }
+        public bool IsRunning
+        {
+            //Para refrescar las propiedaeds en tiempo de ejecucion mediante la clase BaseViewModel
+            get { return this.isrunning; }
+            set { SetValue(ref this.isrunning, value); }
+        }
 
-    public bool IsRemembered { get; set; }
+        public bool IsRemembered { get; set; }
 
-    public bool IsEnabled
-    {
-        //Para refrescar las propiedaeds en tiempo de ejecucion mediante la clase BaseViewModel
-        get { return this.isEnabled; }
-        set { SetValue(ref this.isEnabled, value); }
-    }
+        public bool IsEnabled
+        {
+            //Para refrescar las propiedaeds en tiempo de ejecucion mediante la clase BaseViewModel
+            get { return this.isEnabled; }
+            set { SetValue(ref this.isEnabled, value); }
+        }
 
-    #endregion
+        #endregion
 
-    #region Constructs
+        #region Constructs
 
-    public LoginViewModel()
-    {
-        this.IsRemembered = true;
-        this.isEnabled = true;
-
-            this.email = "luisandrescardozo@gmail.com";
-            this.password = "12345";
-
-            //http://restcountries.eu/rest/v2/all
-    }
-    #endregion
-
-
-    #region Commands
-
-    public ICommand LoginCommand
-    {
-        get
+        public LoginViewModel()
         {
 
-            return new RelayCommand(Login);
+            this.apiService = new ApiService();
+
+            this.IsRemembered = true;
+            this.isEnabled = true;
+
+
+        }
+        #endregion
+
+
+        #region Commands
+
+        public ICommand LoginCommand
+        {
+            get
+            {
+
+                return new RelayCommand(Login);
+
+            }
 
         }
 
-    }
-
-    private async void Login()
-    {
-        if (string.IsNullOrEmpty(this.Email))
+        private async void Login()
         {
-            await Application.Current.MainPage.DisplayAlert(
-                "Error",
-                "You must enter an Email",
-                "Accep");
-            return;
+            if (string.IsNullOrEmpty(this.Email))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must enter an Email",
+                    "Accep");
+                return;
 
-        }
+            }
 
-        if (string.IsNullOrEmpty(this.Password))
-        {
-            await Application.Current.MainPage.DisplayAlert(
-                "Error",
-                "You must enter an Password",
-                "Accep");
+            if (string.IsNullOrEmpty(this.Password))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must enter an Password",
+                    "Accep");
 
-            return;
+                return;
 
-        }
+            }
+
+            this.IsRunning = true;
+            this.IsEnabled = false;
 
 
+            var connection = await this.apiService.CheckConnection();
 
-        if (this.Email != "luisandrescardozo@gmail.com" || this.Password != "12345")
-        {
+            if (!connection.IsSuccess)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    connection.Message,
+                    "Accept");
+
+            }
+
+            var token = await this.apiService.GetToken(
+                "http://landsapis.azurewebsites.net/",
+                this.Email,
+                this.Password);
+
+            if (token == null)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Something was wrong, please try later",
+                    "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(token.AccessToken))
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    token.ErrorDescription,
+                    "Accept");
+                this.Password = string.Empty;
+                return;
+            }
+
+            var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.token = token;
+            mainViewModel.Lands = new LandsViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+        
+
+
             this.IsRunning = false;
             this.IsEnabled = true;
-            await Application.Current.MainPage.DisplayAlert(
-                "Error",
-                "Email or Password Incorrect.",
-                "Accept");
-            this.Password = string.Empty;
-            return;
-
-        }
-
-        this.IsRunning = false;
-        this.IsEnabled = true;
 
             this.Email = string.Empty;
             this.Password = string.Empty;
-
-            MainViewModel.GetInstance().Lands = new LandsViewModel();
-            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
-    }
+}
+            
 
 
 

@@ -20,6 +20,11 @@ namespace Lands.ViewModels
             }
 
 
+        public TokenResponse token
+        {
+            get; set;
+        }
+
         #endregion
 
         #region ViewModels
