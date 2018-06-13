@@ -79,6 +79,8 @@ namespace Lands.ViewModels
 
             this.IsRemembered = true;
             this.isEnabled = true;
+            this.Email = "thiago@gmail.com";
+            this.Password = "123456";
 
 
         }

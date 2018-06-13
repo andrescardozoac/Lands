@@ -69,7 +69,7 @@ namespace Lands.ViewModels
         #endregion
 
 
-        private LandItemViewModel landItemViewModel;
+      //  private LandItemViewModel landItemViewModel;
 
         public LandViewModel(Land land)
         {
